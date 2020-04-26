@@ -25,14 +25,20 @@ class userService(object):
                 "tanggal_pinjam"  : "26-04-2020",
                 }
             }
+        
     def login(self): #pembuatan method login
         get_data = self.checkCredentials() #pembuatan variabel baru untuk pengecekan data inputan user
         get_history = self.checkCredentials2()
+        hist_buku = get_history['peminjaman_buku']
+        hist_date = get_history['tanggal_pinjam']
         if get_data: #pengkondisian boolean untuk login user
             print("\nWelcome ",get_data['role'])
-            print("Logged it as user email: ",get_data['email'])
-            print("\n",get_data['email'], "meminjam buku :\n")
-            print(get_history['peminjaman_buku'])
+            print("Logged it as user email: ",get_data['email'], "\n")
+            print(get_data['email'], "meminjam buku :\n")
+            for buku in hist_buku:
+                print(buku)
+                print()
+            print("Tanggal Peminjaman : ", hist_date)
         else:
             print("\nInvalid Login!\n")
 

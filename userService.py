@@ -29,8 +29,9 @@ class userService(object):
     def login(self): #pembuatan method login
         get_data = self.checkCredentials() #pembuatan variabel baru untuk pengecekan data inputan user
         get_history = self.checkCredentials2()
-        hist_buku = get_history['peminjaman_buku']
-        hist_date = get_history['tanggal_pinjam']
+        if get_history:
+           hist_buku = get_history['peminjaman_buku']
+           hist_date = get_history['tanggal_pinjam'] 
         if get_data: #pengkondisian boolean untuk login user
             print("\nWelcome ",get_data['role'])
             print("Logged it as user email: ",get_data['email'], "\n")
@@ -54,6 +55,8 @@ class userService(object):
     def checkCredentials2(self): #method untuk mengecek data inputan user
         for value in self.history:
             if value == self.email:
-                return self.history[value]         
+                return self.history[value]
+            else:
+                return False
                 
 
